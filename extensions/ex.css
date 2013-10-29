@@ -1,0 +1,190 @@
+.deck-container .goto-form {
+    position: absolute;
+    z-index: 3;
+    bottom: 10px;
+    left: 50%;
+    height: 1.75em;
+    margin: 0 0 0 -9.125em;
+    line-height: 1.75em;
+    padding: 0.625em;
+    display: none;
+    background: #ccc;
+    overflow: hidden;
+}
+.borderradius .deck-container .goto-form {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.deck-container .goto-form label {
+    font-weight: bold;
+}
+.deck-container .goto-form label, .deck-container .goto-form input {
+    display: inline-block;
+    font-family: inherit;
+}
+
+.deck-goto .goto-form {
+    display: block;
+}
+
+#goto-slide {
+    width: 8.375em;
+    margin: 0 0.625em;
+    height: 1.4375em;
+}
+
+@media print {
+    .goto-form, #goto-slide {
+        display: none !important;
+    }
+}
+.deck-container .deck-permalink {
+    display: none;
+    position: absolute;
+    z-index: 4;
+    bottom: 30px;
+    right: 0;
+    width: 48px;
+    text-align: center;
+}
+
+.no-history .deck-container:hover .deck-permalink {
+    display: block;
+}
+.deck-menu .slide {
+    background: #eee;
+    position: relative;
+    left: 0;
+    top: 0;
+    visibility: visible;
+    cursor: pointer;
+}
+.no-csstransforms .deck-menu > .slide {
+    float: left;
+    width: 22%;
+    height: 22%;
+    min-height: 0;
+    margin: 1%;
+    font-size: 0.22em;
+    overflow: hidden;
+    padding: 0 0.5%;
+}
+.csstransforms .deck-menu > .slide {
+    -webkit-transform: scale(0.22) !important;
+    -moz-transform: scale(0.22) !important;
+    -o-transform: scale(0.22) !important;
+    -ms-transform: scale(0.22) !important;
+    transform: scale(0.22) !important;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    -o-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 0 48px;
+    margin: 12px;
+}
+.deck-menu iframe, .deck-menu img, .deck-menu video {
+    max-width: 100%;
+}
+.deck-menu .deck-current, .no-touch .deck-menu .slide:hover {
+    background: #ddf;
+}
+.deck-menu.deck-container:hover .deck-prev-link, .deck-menu.deck-container:hover .deck-next-link {
+    display: none;
+}
+.deck-container .deck-prev-link, .deck-container .deck-next-link {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    width: 32px;
+    height: 32px;
+    margin-top: -16px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 32px;
+    vertical-align: middle;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background: #888;
+}
+.borderradius .deck-container .deck-prev-link, .borderradius .deck-container .deck-next-link {
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
+}
+.deck-container .deck-prev-link:hover, .deck-container .deck-prev-link:focus, .deck-container .deck-prev-link:active, .deck-container .deck-prev-link:visited, .deck-container .deck-next-link:hover, .deck-container .deck-next-link:focus, .deck-container .deck-next-link:active, .deck-container .deck-next-link:visited {
+    color: #fff;
+}
+.deck-container .deck-prev-link {
+    left: 8px;
+}
+.deck-container .deck-next-link {
+    right: 8px;
+}
+.deck-container:hover .deck-prev-link, .deck-container:hover .deck-next-link {
+    display: block;
+}
+.deck-container:hover .deck-prev-link.deck-nav-disabled, .touch .deck-container:hover .deck-prev-link, .deck-container:hover .deck-next-link.deck-nav-disabled, .touch .deck-container:hover .deck-next-link {
+    display: none;
+}
+
+@media print {
+    .deck-prev-link, .deck-next-link {
+        display: none !important;
+    }
+}
+/* Remove this line if you are embedding deck.js in a page and
+using the scale extension. */
+.csstransforms {
+    overflow: hidden;
+}
+
+.csstransforms .deck-container.deck-scale:not(.deck-menu) > .slide {
+    -webkit-box-sizing: padding-box;
+    -moz-box-sizing: padding-box;
+    box-sizing: padding-box;
+    width: 100%;
+    padding-bottom: 20px;
+}
+.csstransforms .deck-container.deck-scale:not(.deck-menu) > .slide > .deck-slide-scaler {
+    -webkit-transform-origin: 50% 0;
+    -moz-transform-origin: 50% 0;
+    -o-transform-origin: 50% 0;
+    -ms-transform-origin: 50% 0;
+    transform-origin: 50% 0;
+}
+
+.csstransforms .deck-container.deck-menu .deck-slide-scaler {
+    -webkit-transform: none !important;
+    -moz-transform: none !important;
+    -o-transform: none !important;
+    -ms-transform: none !important;
+    transform: none !important;
+}
+.deck-container .deck-status {
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+    color: #888;
+    z-index: 3;
+    margin: 0;
+}
+
+body.deck-container .deck-status {
+    position: fixed;
+}
+
+@media print {
+    .deck-status {
+        display: none;
+    }
+}

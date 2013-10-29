@@ -7,98 +7,84 @@
 	<title>Cutting Edge Web Applications</title>
 	
 	<link rel="stylesheet" href="core/deck.core.css">
-	<link rel="stylesheet" href="extensions/goto/deck.goto.css">
-	<link rel="stylesheet" href="extensions/menu/deck.menu.css">
-	<link rel="stylesheet" href="extensions/navigation/deck.navigation.css">
-	<link rel="stylesheet" href="extensions/status/deck.status.css">
-	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
-	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
+	<link rel="stylesheet" href="extensions/ex.css">
 	<link rel="stylesheet" href="themes/style/swiss.css">
+
 	<link rel="stylesheet" href="syntaxhighlighter/styles/shCore.css">
 	<link rel="stylesheet" href="syntaxhighlighter/styles/shCoreDefault.css">
+</head>
+<body class="deck-container">
+
+    <section class="slide">
+        <h1>Cutting Edge Web Applications</h1>
+    </section>
+
+    <section class="slide">
+        <h2>toc</h2>
+        <ul id="overview"></ul>
+    </section>
+
+    <section class="slide">
+        <h2>the big picture</h2>
+        <ul>
+            <li>first</li>
+        </ul>
+    </section>
+
+
+    <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+    <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+    <p class="deck-status" style="left: 10px; bottom: 10px;">Sebastian Stiehl</p>
+
+    <p class="deck-status">
+        <span class="deck-status-current"></span>
+        /
+        <span class="deck-status-total"></span>
+    </p>
+
+    <form action="" method="get" class="goto-form">
+        <label for="goto-slide">Go to slide:</label>
+        <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+        <datalist id="goto-datalist"></datalist>
+        <input type="submit" value="Go">
+    </form>
+
+    <a href="" title="Permalink to this slide" class="deck-permalink">#</a>
 
     <script src="syntaxhighlighter/scripts/shCore.js"></script>
     <script src="syntaxhighlighter/scripts/shBrushJScript.js"></script>
     <script src="syntaxhighlighter/scripts/shBrushCss.js"></script>
     <script src="syntaxhighlighter/scripts/shBrushXml.js"></script>
+    <script src="jslibs/modernizr.custom.js"></script>
+    <script src="jslibs/jquery.min.js"></script>
+    <script src="jslibs/jq.color.js"></script>
+    <script src="core/deck.core.js"></script>
+    <script src="extensions/ex.js"></script>
     <script>
         SyntaxHighlighter.all();
+
+        $(function () {
+            var lastTopic = "";
+
+            $("pre").each(function () {
+                var $el = $(this),
+                        content = $el.html();
+
+                content = content.replace(/>/g, "&gt;").replace(/</g, "&lt;");
+                $el.html(content);
+            });
+
+            $.deck('.slide');
+
+            $(".slide h2").slice(1).each(function () {
+                var newTopic = $(this).text();
+                if (lastTopic !== newTopic) {
+                    $("#overview").append("<li>" + newTopic + "</li>");
+                    lastTopic = newTopic;
+                }
+            });
+        });
     </script>
-	
-	<script src="modernizr.custom.js"></script>
-</head>
-<body class="deck-container">
-
-<section class="slide">
-    <h1>Cutting Edge Web Applications</h1>
-</section>
-
-<section class="slide">
-    <h2>toc</h2>
-    <ul id="overview"></ul>
-</section>
-
-<section class="slide">
-    <h2>the big picture</h2>
-    <ul>
-        <li>first</li>
-    </ul>
-</section>
-
-
-<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
-<a href="#" class="deck-next-link" title="Next">&#8594;</a>
-
-<p class="deck-status" style="left: 10px; bottom: 10px;">Sebastian Stiehl</p>
-
-<p class="deck-status">
-	<span class="deck-status-current"></span>
-	/
-	<span class="deck-status-total"></span>
-</p>
-
-<form action="" method="get" class="goto-form">
-	<label for="goto-slide">Go to slide:</label>
-	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
-	<datalist id="goto-datalist"></datalist>
-	<input type="submit" value="Go">
-</form>
-
-<a href="" title="Permalink to this slide" class="deck-permalink">#</a>
-
-<script src="jquery.min.js"></script>
-<script src="jq.color.js"></script>
-<script src="core/deck.core.js"></script>
-
-<script src="extensions/hash/deck.hash.js"></script>
-<script src="extensions/menu/deck.menu.js"></script>
-<script src="extensions/goto/deck.goto.js"></script>
-<script src="extensions/status/deck.status.js"></script>
-<script src="extensions/navigation/deck.navigation.js"></script>
-<script src="extensions/scale/deck.scale.js"></script>
-
-<script>
-    $(function () {
-        var lastTopic = "";
-
-        $("pre").each(function () {
-            var $el = $(this),
-                    content = $el.html();
-
-            content = content.replace(/>/g, "&gt;").replace(/</g, "&lt;");
-            $el.html(content);
-        });
-
-        $.deck('.slide');
-
-        $(".slide h2").slice(1).each(function () {
-            var newTopic = $(this).text();
-            if (lastTopic !== newTopic) {
-                $("#overview").append("<li>" + newTopic + "</li>");
-                lastTopic = newTopic;
-            }
-        });
-    });
-</script>
 </body>
 </html>
