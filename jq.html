@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<title>Know your library</title>
+	
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" href="core/deck.core.css">
+	
+	<!-- Extension CSS files go here. Remove or add as needed. -->
+	<link rel="stylesheet" href="extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="extensions/status/deck.status.css">
+	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
+
+	<!-- Style theme. More available in /themes/style/ or create your own. -->
+	<link rel="stylesheet" href="themes/style/swiss.css">
+	
+	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
+	<!--link rel="stylesheet" href="./themes/transition/horizontal-slide.css"-->
+
+	<link rel="stylesheet" href="syntaxhighlighter/styles/shCore.css">
+	<link rel="stylesheet" href="syntaxhighlighter/styles/shCoreDefault.css">
+	
+	<!-- Required Modernizr file -->
+	<script src="modernizr.custom.js"></script>
+
+    <style>
+        #dep {
+            margin: 0 auto;
+        }
+        #dep thead td {
+            border-bottom: 4px #000 solid;
+        }
+        #dep tbody tr:nth-of-type(odd){
+            background-color: #eee;
+        }
+        #dep td {
+            border: 1px solid #777;
+            padding: 10px 40px;
+        }
+        .slide span {
+            color: #454545;
+        }
+        #ani {
+        	position: fixed;
+        	width: 100px;
+        	height: 100px;
+        	background-color: #848484;
+        	right: 80px;
+        	top: 400px;
+        	z-index: 100;
+            border-radius: 50px;
+        }
+		.slide .syntaxhighlighter {
+			border: 3px solid #aaa;
+			padding: 20px 0 20px 20px;
+		}
+		.toolbar {
+			display: none;
+		}
+		.slide pre * {
+			margin: 0;
+			padding: 0;
+			line-height: 0.8em;
+		}
+        .slide pre {
+            margin: 1em 0;
+            padding: 20px 0 20px 20px;
+            line-height: 35px;
+            font-size: 28px;
+        }
+		#util span {
+			font-size: 1.2em;
+			padding: 15px;
+		}
+    </style>
+    
+</head>
+<body class="deck-container">
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+
+<section class="slide">
+    <h1>Know your library: <br /><span style="color: #00a4e9;">jQuery</span></h1>
+</section>
+
+<section class="slide">
+    <h2>Overview</h2>
+    <ul id="overview"></ul>
+</section>
+
+<section class="slide">
+    <h2>Traversing the DOM</h2>
+	<h3>jQuery( selector [, context] )</h3>
+	<ul>
+		<li>chainable functions</li>
+		<li>callbacks have the context of the dom node</li>
+	</ul>
+	<a href="http://www.jasondavies.com/wordcloud/"><img src="pics/tags.png" alt="" /></a>
+	<pre class="brush: js">$(document).find("*").map(function () {
+	return this.tagName.toLowerCase();
+}).get().join(" ");</pre>
+</section>
+
+<section class="slide">
+    <h2>Traversing the DOM</h2>
+	<h3>The jQuery Object</h3>
+	<ul>
+		<li>mixture of array and associative array</li>
+		<li>holds zero, one or more dom nodes</li>
+	</ul>
+	<span>abstract representation (no valid js code):</span>
+	<pre class="brush: js">[
+	"domNodeZero",
+	"domNodeOne",
+	"attribute": "value",
+	"do": function {}
+]</pre>
+	<section class="slide">
+	<pre class="brush: js">$("div")[0];
+$("div").get(0)</pre>
+	</section>
+</section>
+
+<section class="slide">
+	<h2>Traversing the DOM</h2>
+    <h3>.find( selector )</h3>
+    <span>searching for elements the dom downwards</span>
+    <pre class="brush: js">var contentDiv = $('div.content');
+contentDiv.find('li');</pre>
+    <span>is equivalent to</span>
+    <pre class="brush: js">$('li', contentDiv);</pre>
+</section>
+
+<section class="slide">
+	<h2>Traversing the DOM</h2>
+    <h3>.map( callback(index, domElement) )</h3>
+    <span>changing matched elements</span>
+	<pre class="brush: js">$("div").map(function () {
+    return this.id;
+});</pre>
+	<section class="slide">
+		<span>"this" points to the dom node!</span>
+	<pre class="brush: js">$("div").map(function () {
+    return $(this).attr("id");
+});</pre>
+	</section>
+</section>
+
+<section class="slide">
+    <h2>Traversing the DOM</h2>
+    <h3>.closest( selector [, context] )</h3>
+    <span>searches for one element the dom upwards</span>
+
+	<pre class="brush: xml"><div>
+    <ul id="context">
+        <li>
+            <ul class="found">
+                <li>
+					<a>My Site</a>
+				</li>
+            </ul>
+        </li>
+    </ul>
+</div></pre>
+    <pre class="brush: js">$('a').closest('ul', $("#context")).attr("class");</pre>
+</section>
+
+<section class="slide">
+    <h2>Traversing the DOM</h2>
+    <h3>.parents( [selector] )</h3>
+    <span>collects all parents</span>
+    <pre class="brush: xml"><div>
+    <div>
+		<span></span>
+	</div>
+</div></pre>
+    <pre class="brush: js">$('span').first().parents();</pre>
+</section>
+
+<section class="slide">
+    <h2>Traversing the DOM</h2>
+    <h3>.is( selector )</h3>
+    <span>return true if one element matches</span>
+    <pre class="brush: xml"><ul>
+    <li></li>
+    <li id="aListEntry"></li>
+    <li></li>
+</ul></pre>
+    <pre class="brush: js">$('#aListEntry').is(":nth-of-type(even)")​​​​​​;
+
+> true</pre>
+<pre class="brush: js">
+$('#aListEntry').is(":visible")​​​​​​;
+
+> true</pre>
+</section>
+
+<section class="slide">
+    <h2>Traversing the DOM</h2>
+    <h3>need more?</h3>
+    <a href="http://api.jquery.com/category/traversing/">http://api.jquery.com/category/traversing/</a>
+</section>
+
+
+<section class="slide">
+	<h2>Utilities</h2>
+	<div id="util"></div>
+</section>
+
+<section class="slide">
+	<h2>Utilities</h2>
+    <h3>jQuery.extend( [deep], target, object1 [, objectN] )</h3>
+    <ul>
+    	<li>mergs 2 or more objects into one</li>
+        <li>extend the jquery object (plugin)</li>
+    </ul>
+    <pre class="brush: js">var first = {"color": "grey", "size": 150},
+	second = {"color": "red", "age": 27};
+
+$.extend(first, second);
+
+
+> {"color": "red","size": 150,"age" : 27}</pre>
+</section>
+
+<section class="slide">
+	<h2>Utilities</h2>
+	<h3>jQuery.grep( array, function(el, index) [, invert] )</h3>
+	<ul>
+    	<li>returns an array with matched values filtered by a function</li>
+    </ul>
+	<pre class="brush: js">$.grep(["a", "b", "c", "d", "e"], function (el, index) {
+	return index % 2 === 0;
+});
+
+> ["a", "c", "e"]</pre>
+
+</section>
+
+<section class="slide">
+	<h2>Utilities</h2>
+    <h3>.queue( [queueName], callback( next ) )</h3>
+    <ul>
+    	<li>executes tasks in the way they are added</li>
+    	<li>mostly used for animations (queueName === "fx")</li>
+    </ul>
+<pre class="brush: js">$(document).queue(function () {
+    setTimeout(function () {
+        console.log("first");
+        $(document).dequeue();
+    }, 3000);
+});
+
+$(document).queue(function () {
+    console.log("second");
+    $(this).dequeue();
+});
+
+> first
+> second</pre>
+</section>
+
+<section class="slide">
+    <h2>jQuery.Callbacks()</h2>
+	<ul>
+		<li>set of function</li>
+		<li>.add( ) .remove( ) .fire( ) .disable( ) ...</li>
+		<li>loose coupling</li>
+	</ul>
+	<pre class="brush: js">var publish = $.Callbacks();
+
+publish.add(function (text) {
+	alert("say: " + text);
+});
+
+publish.add(function (text) {
+	window.localStorage.setItem("say", text);
+});
+
+publish.fire("word");</pre>
+</section>
+
+<section class="slide">
+    <h2>jQuery.Deferred()</h2>
+	<ul>
+		<li>CommonJS Promises/A - design pattern implementation</li>
+		<li>state change from: pending -> resolved || pending -> rejected</li>
+		<li>example = $.ajax</li>
+	</ul>
+
+	<pre class="brush: js">var deferred = $.Deferred();
+
+deferred.then(doneCallbacks, failCallbacks);
+deferred.done(anotherDoneCallback);
+deferred.fail(anotherFailCallback);
+
+if (succeeded) {
+	deferred.resolve(args);
+} else {
+	deferred.reject(args);
+}</pre>
+
+</section>
+
+<section class="slide">
+    <h2>jQuery.Deferred()</h2>
+	<h3>jQuery.when( deferreds )</h3>
+	<ul>
+		<li>synchronises deferred done callbacks</li>
+		<li>executes the fail callback immediately</li>
+	</ul>
+	<pre class="brush: js">$.when($.ajax("/pageOne.php"), $.ajax("/pageTwo.php"))
+.then(doneCallbacks, failCallback);</pre>
+</section>
+
+<section class="slide">
+	<h2>jQuery.Deferred()</h2>
+	<h3>.promise( [type] [, target] )</h3>
+	<ul>
+		<li>return promise object (subset of the deferred methods)</li>
+		<li>default type is "fx"</li>
+	</ul>
+	<pre class="brush: js">$("#textBox").fadeIn();
+$("#textBox").promise().done(function() {
+    $("p.status").append("Finished!");
+});</pre>
+</section>
+
+<section class="slide">
+    <h2>Deprecated functions</h2>
+    <div>
+        <table id="dep">
+            <thead>
+                <tr>
+                    <td>old</td>
+                    <td>new</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>$(selector).live(events, data, handler);</td><td>$(document).on(events, selector, data, handler);</td></tr>
+                <tr><td>.load(handler)</td><td>.on("load", handler)</td></tr>
+                <tr><td>.unload(handler)</td><td>.on("unload", handler)</td></tr>
+                <tr><td>.error(handler)</td><td>.on("error", handler)</td></tr>
+                <tr><td>.die()</td><td>.off()</td></tr>
+                <tr><td>.size()</td><td>.length</td></tr>
+                <tr><td>.toggle(handler, handler)</td><td>Implement it by hand!</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="slide">
+    <h2>Questions?</h2>
+    <img src="pics/cat_question.jpeg" />
+</section>
+
+<!-- End slides. -->
+
+
+<!-- Begin extension snippets. Add or remove as needed. -->
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<p class="deck-status" style="left: 10px; bottom: 10px;">Sebastian Stiehl 2012-11</p>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="" method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="" title="Permalink to this slide" class="deck-permalink">#</a>
+
+<!-- End extension snippets. -->
+
+
+<!-- Required JS files. -->
+<script src="jquery-1.7.2.min.js"></script>
+<script src="jq.color.js"></script>
+
+<script src="syntaxhighlighter/scripts/shCore.js"></script>
+<script src="syntaxhighlighter/scripts/shBrushJScript.js"></script>
+<script src="syntaxhighlighter/scripts/shBrushXml.js"></script>
+
+<script src="core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="core/deck.core.js"></script>
+<script src="extensions/hash/deck.hash.js"></script>
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/navigation/deck.navigation.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+
+	$(function () {
+        var triggerAnimation,
+			max = 1,
+			lastTopic = "",
+        	run = false,
+        	$ani = $("#ani");
+
+
+		SyntaxHighlighter.all();
+
+		$.deck('.slide');
+
+        $("h2").on("click", function () {
+            window.location.href = window.location.href.split("#")[0];
+        });
+
+        $(".slide h2").slice(1).each(function () {
+            var newTopic = $(this).text();
+            if (lastTopic !== newTopic) {
+                $("#overview").append("<li>" + newTopic + "</li>");
+                lastTopic = newTopic;
+            }
+        });
+
+		function get_random_color() {
+			var letters = '0123456789ABCDEF'.split('');
+			var color = '#';
+			for (var i = 0; i < 6; i++ ) {
+				color += letters[Math.round(Math.random() * 15)];
+			}
+			return color;
+		}
+
+        function animate() {
+        	$ani.css("top", "400px");
+        	$ani.css("right", "80px");
+        	$ani.css("background-color", "#848484");
+
+        	$ani.animate({top: "+=100", right: "+=100"}, 1000);
+        	$ani.animate({top: "-=100", right: "+=100"}, 1000);
+        	$ani.animate({right: "-=200"}, 1000);
+
+        	$ani.animate({"backgroundColor": "#FF00FF"}, {queue: "color", duration: 1000});
+        	$ani.animate({"backgroundColor": "#01A9DB"}, {queue: "color", duration: 1000});
+         	$ani.animate({"backgroundColor": "#FF8000"}, {queue: "color", duration: 1000});
+         	$ani.animate({"backgroundColor": "#848484"}, {queue: "color", duration: 1000});
+        	$ani.queue("color", function () {
+				max--;
+				if (max > 0) {
+    				animate();
+				}
+        	});
+
+        	$ani.dequeue("color");
+        }
+
+		//triggerAnimation = $(".triggerAnimation").first().attr("id").replace("slide-", "");
+
+
+		$(document).bind('deck.change', function(event, from, to) {
+			if (triggerAnimation == to) {
+				animate();
+			}
+		});
+
+		function utilsColor() {
+			var html = "",
+				utils = ["jQuery.boxModel", "jQuery.browser", ".clearQueue()", "jQuery.contains()", "jQuery.data()", ".dequeue()", "jQuery.dequeue()", "jQuery.each()", "jQuery.extend()", "jQuery.globalEval()", "jQuery.grep()", "jQuery.inArray()", "jQuery.isArray()", "jQuery.isEmptyObject()", "jQuery.isFunction()", "jQuery.isNumeric()", "jQuery.isPlainObject()", "jQuery.isWindow()", "jQuery.isXMLDoc()", "jQuery.makeArray()", "jQuery.map()", "jQuery.merge()", "jQuery.noop()", "jQuery.now()", "jQuery.parseJSON", "jQuery.parseXML()", "jQuery.proxy()", ".queue()", "jQuery.queue()", "jQuery.removeData()", "jQuery.support", "jQuery.trim()", "jQuery.type()", "jQuery.unique()"];
+
+			$.each(utils, function (index, el) {
+				var randomColor = get_random_color();
+				html += '<span style="color: ' + randomColor + ';">' + el + '</span> ';
+			});
+			$("#util").append(html);
+		}
+
+		utilsColor();
+	});
+</script>
+</body>
+</html>

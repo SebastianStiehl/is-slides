@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+	<title></title>
+	
+	<!-- Required stylesheet -->
+	<link rel="stylesheet" href="core/deck.core.css">
+	
+	<!-- Extension CSS files go here. Remove or add as needed. -->
+	<link rel="stylesheet" href="extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="extensions/status/deck.status.css">
+	<link rel="stylesheet" href="extensions/hash/deck.hash.css">
+	<link rel="stylesheet" href="extensions/scale/deck.scale.css">
+
+	<!-- Style theme. More available in /themes/style/ or create your own. -->
+	<link rel="stylesheet" href="themes/style/swiss.css">
+	
+	<!-- Transition theme. More available in /themes/transition/ or create your own. -->
+	<!--link rel="stylesheet" href="./themes/transition/horizontal-slide.css"-->
+
+	<link rel="stylesheet" href="syntaxhighlighter/styles/shCore.css">
+	<link rel="stylesheet" href="syntaxhighlighter/styles/shCoreDefault.css">
+	
+	<!-- Required Modernizr file -->
+	<script src="modernizr.custom.js"></script>
+
+    <style>
+        #dep {
+            margin: 0 auto;
+        }
+        #dep thead td {
+            border-bottom: 4px #000 solid;
+        }
+        #dep tbody tr:nth-of-type(odd){
+            background-color: #eee;
+        }
+        #dep td {
+            border: 1px solid #777;
+            padding: 10px 40px;
+        }
+        .slide span {
+            color: #454545;
+        }
+        #ani {
+        	position: fixed;
+        	width: 100px;
+        	height: 100px;
+        	background-color: #848484;
+        	right: 80px;
+        	top: 400px;
+        	z-index: 100;
+            border-radius: 50px;
+        }
+		.slide .syntaxhighlighter {
+			border: 3px solid #aaa;
+			padding: 20px 0 20px 20px;
+		}
+		.toolbar {
+			display: none;
+		}
+		.slide pre * {
+			margin: 0;
+			padding: 0;
+			line-height: 0.8em;
+		}
+        .slide pre {
+            margin: 1em 0;
+            padding: 20px 0 20px 20px;
+            line-height: 35px;
+            font-size: 28px;
+        }
+		#util span {
+			font-size: 1.2em;
+			padding: 15px;
+		}
+		.slide table td {
+			padding: 4px 8px;
+			border: 2px	solid black;
+		}
+    </style>
+    
+</head>
+<body class="deck-container">
+
+<!-- Begin slides. Just make elements with a class of slide. -->
+
+<section class="slide">
+    <h2>ADS-132 - No ads shown on CMS pages</h2>
+	<h3></h3>
+	<pre class="brush: js">Y.on("domready", function () {
+	var container = Y.one("#container");
+	
+	if (!container) {
+		return false;
+	}
+});</pre>
+</section>
+
+<section class="slide">
+    <h2>ADS-132 - No ads shown on CMS pages</h2>
+	<h3>domready stack</h3>
+	<table>
+		<tr><td>callback function a</td></tr>
+		<tr><td>callback function b</td></tr>
+		<tr><td>callback function c</td></tr>
+		<tr><td>callback function d</td></tr>
+		<tr><td>callback function e</td></tr>
+	</table>
+</section>
+
+<section class="slide">
+    <h2>ADS-132 - No ads shown on CMS pages</h2>
+	<h3>domready stack</h3>
+	<table>
+		<tr><td style="background-color: #888; color: #fff;">callback function a</td></tr>
+		<tr><td style="background-color: #888; color: #fff;"">callback function b</td></tr>
+		<tr><td style="background-color: #888; color: #fff;"">callback function c</td></tr>
+		<tr><td>callback function d</td></tr>
+		<tr><td>callback function e</td></tr>
+	</table>
+</section>
+
+<section class="slide">
+    <h2>ADS-132 - No ads shown on CMS pages</h2>
+	<h3>Solution</h3>
+	<pre class="brush: js">Y.on("domready", function () {
+	var container = Y.one("#container");
+	
+	if (!container) {
+		return;
+	}
+});</pre>
+</section>
+
+
+<!-- End slides. -->
+
+
+<!-- Begin extension snippets. Add or remove as needed. -->
+
+<!-- deck.navigation snippet -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<p class="deck-status" style="left: 10px; bottom: 10px;">Sebastian Stiehl 2012-12</p>
+
+<!-- deck.status snippet -->
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<!-- deck.goto snippet -->
+<form action="" method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<!-- deck.hash snippet -->
+<a href="" title="Permalink to this slide" class="deck-permalink">#</a>
+
+<!-- End extension snippets. -->
+
+
+<!-- Required JS files. -->
+<script src="jquery-1.7.2.min.js"></script>
+<script src="jq.color.js"></script>
+
+<script src="syntaxhighlighter/scripts/shCore.js"></script>
+<script src="syntaxhighlighter/scripts/shBrushJScript.js"></script>
+<script src="syntaxhighlighter/scripts/shBrushXml.js"></script>
+
+<script src="core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="core/deck.core.js"></script>
+<script src="extensions/hash/deck.hash.js"></script>
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="extensions/navigation/deck.navigation.js"></script>
+<script src="extensions/scale/deck.scale.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+
+	$(function () {
+        var triggerAnimation,
+			max = 1,
+			lastTopic = "",
+        	run = false,
+        	$ani = $("#ani");
+
+
+		SyntaxHighlighter.all();
+
+		$.deck('.slide');
+
+        $("h2").on("click", function () {
+            window.location.href = window.location.href.split("#")[0];
+        });
+
+        $(".slide h2").slice(1).each(function () {
+            var newTopic = $(this).text();
+            if (lastTopic !== newTopic) {
+                $("#overview").append("<li>" + newTopic + "</li>");
+                lastTopic = newTopic;
+            }
+        });
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+#dep {
+    margin: 0 auto;
+}
+#dep thead td {
+    border-bottom: 4px #000 solid;
+}
+#dep tbody tr:nth-of-type(odd){
+    background-color: #eee;
+}
+#dep td {
+    border: 1px solid #777;
+    padding: 10px 40px;
+}
+.slide span {
+    color: #454545;
+}
+#ani {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background-color: #848484;
+    right: 80px;
+    top: 400px;
+    z-index: 100;
+    border-radius: 50px;
+}
+.slide .syntaxhighlighter {
+    border: 3px solid #aaa;
+    padding: 20px 0 20px 20px;
+}
+.toolbar {
+    display: none;
+}
+.slide pre * {
+    margin: 0;
+    padding: 0;
+    line-height: 0.8em;
+}
+.slide pre {
+    margin: 1em 0;
+    padding: 20px 0 20px 20px;
+    line-height: 35px;
+    font-size: 28px;
+}
+#util span {
+    font-size: 1.2em;
+    padding: 15px;
+}
+.slide table td {
+    padding: 4px 8px;
+    border: 2px	solid black;
+}
+ul.leftImgList {
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+.leftImgList li {
+    float: left;
+}
+.leftImgList img {
+    margin: 35px;
+    width: 150px;
+}
+div.rightFloatBox, div.quoteBox {
+    float: right;
+    overflow: hidden;
+    width: 20%;
+}
+.rightFloatBox img {
+    width: 90%;
+    margin-bottom: 20px;
+    border: 2px solid #215b94;
+}
+div.quoteBox {
+    width: 40%;
+    opacity: 0.85;
+}
+.deck-container .slide a.quote {
+    color: #777;
+    font-size: 0.7em;
+    text-decoration: none;
+}
+.rightFloatBox i {
+    font-style: italic;
+}
+div.ages {
+    font-size: 3em;
+    margin-left: 0.4em;
+}
+.backlogFrame {
+    width: 100%;
+    height: 800px;
+    max-height: 70%;
+}
+
+.deck-container .slide h2 {
+    background: no-repeat right url(../../pics/is24.min.svg);
+    background-size: 100px;
+}
