@@ -188,3 +188,29 @@ body.deck-container .deck-status {
         display: none;
     }
 }
+
+.slide span {
+    color: #454545;
+}
+.toolbar {
+    display: none;
+}
+.slide pre * {
+    margin: 0;
+    padding: 0;
+    line-height: 0.8em;
+}
+.slide pre {
+    margin: 1em 0;
+    padding: 20px 0 20px 20px;
+    line-height: 35px;
+    font-size: 28px;
+}
+.slide .syntaxhighlighter {
+    border: 3px solid #aaa;
+    padding: 20px 0 20px 20px;
+}
+.slide .syntaxhighlighter table td {
+    padding: 4px 8px;
+    border: 2px	solid black;
+}
