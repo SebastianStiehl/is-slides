@@ -1,0 +1,53 @@
+.drop-shadow(@x-axis: 0, @y-axis: 1px, @blur: 2px, @alpha: 0.1) {
+  -webkit-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+  box-shadow: @x-axis @y-axis @blur rgba(0, 0, 0, @alpha);
+}
+
+h1 {
+  margin-top: 20%;
+}
+
+.slide table.pastTable {
+  width: 400px;
+  float: left;
+
+  td {
+    text-align: center;
+    padding: 20px 0;
+    border: solid 1px black;
+  }
+
+  td.data {
+    background-color: #404040;
+    color: #ffffff;
+  }
+  
+  td.backend {
+    background-color: #909090;
+    color: #ffffff;
+  }
+  
+  td.frontend {
+    background-color: #eee;
+  }
+}
+
+.slide .component {
+  color: #fff;
+  background-color: #158ade;
+  border-radius: 20px;
+  display: inline-block;
+  padding: 30px;
+  position: relative;
+  margin: 50px;
+  .drop-shadow(1px, 1px, 3px, 0.6);
+
+  & > div {
+    background-color: #0D588C;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 15px;
+    font-size: 0.8em;
+  }
+}
