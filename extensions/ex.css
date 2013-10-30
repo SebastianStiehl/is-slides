@@ -214,3 +214,7 @@ body.deck-container .deck-status {
     padding: 4px 8px;
     border: 2px	solid black;
 }
+
+.slide h2 {
+  padding-right: 13%;
+}
