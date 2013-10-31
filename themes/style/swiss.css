@@ -14,7 +14,7 @@
 
 .deck-container .slide h2 {
 	color: #215b94;
-	border-bottom-color: #FF7500;
+	border-bottom-color: #333333;
 	border-bottom-width: 6px;
 	padding-top: 0.3em;
 }
@@ -108,8 +108,8 @@
 }
 
 .deck-container .slide h2 {
-    background: no-repeat right url(../../pics/is24.min.svg);
-    background-size: 100px;
+    background: no-repeat right url(../../draw/is24.min.svg);
+    background-size: 120px;
 }
 
 .textShadow {
