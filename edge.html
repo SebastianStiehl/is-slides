@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="slidesApp">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -14,10 +14,20 @@
 	<link rel="stylesheet" href="syntaxhighlighter/styles/shCoreDefault.css">
 	<link rel="stylesheet/less" type="text/css" href="less/edge.less">
 
-  <style>
+  <script src="jslibs/angular.min.js"></script>
+  <script>
+    (function (ng) {
 
-  </style>
+      var module = ng.module('slidesApp', []);
+      module.controller('TopicController', ['$scope', function ($scope) {
+        $scope.slide = {
+          title: "SPA",
+          topic: "example: 2 way data binding"
+        };
+      }]);
 
+    }(angular));
+  </script>
 
 </head>
 <body class="deck-container">
@@ -36,13 +46,26 @@
       <h3>Sebastian Stiehl</h3>
       <ul>
         <li>Dipl.-Ing. for Media Engineering</li>
-        <li>5 years @ IS24</li>
+        <li>5 years @ IS24 SL-Search</li>
         <li>dynamic frontend expert</li>
       </ul>
     </section>
+    
+    <section class="slide">
+      <h2>Transformation of Web</h2>
+      <h3>Web Page</h3>
+      <img src="pics/blogExample.png" />
+    </section>    
+    
+    <section class="slide">
+      <h2>Transformation of Web</h2>
+      <h3>Web Application</h3>
+      <img src="pics/webApplication.png" width="70%" />
+    </section>
 
     <section class="slide">
-      <h2>past web application layer</h2>
+      <h2>web application layer</h2>
+      <h3>legacy</h3>
       <table class="pastTable">
         <tr><td class="data">database</td></tr>
         <tr><td class="data">orm</td></tr>
@@ -55,18 +78,51 @@
     </section>
 
     <section class="slide">
-      <h2>Backend & Frontend</h2>
-      <img src="draw/server-browser.svg" width="80%" />
+      <h2>web application layer</h2>
+      <h3>flat</h3>
+      <table class="pastTable">
+        <tr><td class="data">data api</td></tr>
+        <tr><td class="backend">rest service</td></tr>
+        <tr><td class="frontend">html + css + js</td></tr>
+      </table>
     </section>
 
     <section class="slide">
-      <h2>Server</h2>
+      <h2>Backend & Frontend</h2>
+      <img src="draw/server-browser.svg" width="60%" style="padding-top: 40px; " />
+    </section>
+
+    <section class="slide">
+      <h2>Backend</h2>
       <img src="draw/build.svg" width="80%" />
     </section>
 
     <section class="slide">
-      <h2>Server</h2>
-      <h3>build</h3>
+      <h2>CI</h2>
+
+      <div class="imageBlock" style="width: 35%">
+        <img src="pics/travis.png" style="background-color: #42413d; padding: 15px; border-radius: 10px;" />
+        <img src="pics/jenkins.png" style="border: 2px solid #42413d; padding: 15px; border-radius: 10px;" />
+        <img src="pics/teamcity.png" style="background-color: #42413d; padding: 15px; border-radius: 10px;" />
+      </div>
+
+      <h3>Continuous-Integration System</h3>
+      <ul>
+        <li>automate</li>
+        <li>transparency</li>
+        <li>reports</li>
+      </ul>
+      
+    </section>
+
+    <section class="slide">
+      <h2>CI</h2>
+
+      <div class="imageBlock" style="width: 30%">
+        <img src="pics/grunt.png"/>
+      </div>
+      
+      <h3>build the web application</h3>
       <ul>
         <li>compile</li>
         <li>combine</li>
@@ -76,8 +132,16 @@
     </section>
 
     <section class="slide">
-      <h2>Server</h2>
-      <h3>test</h3>
+      <h2>CI</h2>
+
+      <div class="imageBlock" style="width: 40%">
+        <img src="pics/jslint.png" style="border: 2px solid #42413d; padding: 15px; border-radius: 10px;"/>
+        <img src="pics/jasmine.png" style="border: 2px solid #42413d; padding: 15px; border-radius: 10px;"/>
+        <img src="pics/phantomjs.png" style="padding: 5px 5px 10px 20px; background-color: #42413d; border-radius: 10px;"/>
+        <img src="pics/selenium.png" style="background-color: #42413d; padding: 15px;border-radius: 10px;"/>
+      </div>
+
+      <h3>test the code</h3>
       <ul>
         <li>check code quality</li>
         <li>run unit tests</li>
@@ -87,8 +151,8 @@
     </section>
 
     <section class="slide">
-      <h2>Server</h2>
-      <h3>deploy</h3>
+      <h2>CI</h2>
+      <h3>deploy the artifact to the servers</h3>
       <ul>
         <li>stop services</li>
         <li>place and unpack artifact</li>
@@ -97,35 +161,68 @@
     </section>
 
     <section class="slide">
-      <h2>Browser</h2>
-      <img src="draw/browser.svg" width="80%" />
+      <h2>Backend & Frontend</h2>
+      <img src="draw/server-browser.svg" width="60%" style="padding-top: 40px; " />
     </section>
+
+    <section class="slide">
+      <h2>Frontend</h2>
+      <h3>loading data</h3>
+      <img src="draw/browser.svg" width="55%" style="padding-top: 40px; " />
+    </section>    
 
     <section class="slide">
       <h2>SPA</h2>
       <h3>single page application</h3>
-      <img src="draw/SPA.svg" width="80%" />
+      <img src="draw/SPA.svg" width="40%" style="padding-top: 40px; "/>
     </section>
 
     <section class="slide">
       <h2>SPA</h2>
+
+      <div class="imageBlock">
+        <img src="pics/jquery-white.png" style="background-color: #333; border-radius: 10px;" />
+        <img src="pics/backbone.png" />
+        <img src="pics/underscore.png" />
+      </div>
+      
       <h3>libraries</h3>
-      <ul>
-        <li>structure</li>
+      <ul style="width: 40%">
         <li>helpers</li>
+        <li>structure</li>
         <li>shortcuts</li>
       </ul>
+      
     </section>
 
     <section class="slide">
       <h2>SPA</h2>
+
+      <div class="imageBlock">
+        <img src="pics/AngularJS.png" />
+        <img src="pics/knockout.png" style="  padding-bottom: 0" />
+        <img src="pics/emberjs.png" style="margin-top: 0; padding-top: 0;"/>
+      </div>
+      
       <h3>frameworks</h3>
-      <ul>
-        <li>2 way data binding</li>
+      <ul style="width: 40%">
         <li>separation of concern</li>
         <li>rendering</li>
         <li>routing</li>
+        <li>2 way data binding</li>
       </ul>
+      
+    </section>    
+    
+    <section class="slide" data-ng-controller="TopicController">
+      <h2>{{slide.title}}</h2>
+      <h3>{{slide.topic}}</h3>
+      
+      <div class="editBox">
+        <label>Title</label>
+        <input type="text" data-ng-model="slide.title" />
+      </div>
+      
     </section>
 
     <section class="slide">
@@ -144,19 +241,24 @@
         <li>security</li>
         <li>browser caching</li>
         <li>memory leaks</li>
+        <li>seo</li>
       </ul>
 
     </section>
 
     <section class="slide">
-      <h2>web application layer</h2>
-      <table class="pastTable">
-        <tr><td class="data">data api</td></tr>
-        <tr><td class="backend">rest service</td></tr>
-        <tr><td class="frontend">html + css + js</td></tr>
-      </table>
+      <h2>Modules</h2>
+      <ul>
+        <li>keep it small</li>
+        <li>do one thing</li>
+        <li>inject dependencies</li>
+      </ul>
+      
+      <pre>
+        
+      </pre>
     </section>
-
+    
     <section class="slide">
       <h2>Measure</h2>
       <ul>
@@ -172,7 +274,6 @@
         <li><a href="http://stiehl.io/">sstiehl.io</a></li>
         <li><a href="https://twitter.com/5oc">twitter @5oc</a></li>
       </ul>
-      <h3>Thank You</h3>
     </section>
 
 
@@ -237,6 +338,8 @@
                     lastTopic = newTopic;
                 }
             });
+
+          
         });
     </script>
 </body>
