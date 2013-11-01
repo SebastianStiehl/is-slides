@@ -13,22 +13,6 @@
 	<link rel="stylesheet" href="syntaxhighlighter/styles/shCore.css">
 	<link rel="stylesheet" href="syntaxhighlighter/styles/shCoreDefault.css">
 	<link rel="stylesheet/less" type="text/css" href="less/edge.less">
-
-  <script src="jslibs/angular.min.js"></script>
-  <script>
-    (function (ng) {
-
-      var module = ng.module('slidesApp', []);
-      module.controller('TopicController', ['$scope', function ($scope) {
-        $scope.slide = {
-          title: "SPA",
-          topic: "example: 2 way data binding"
-        };
-      }]);
-
-    }(angular));
-  </script>
-
 </head>
 <body class="deck-container">
 
@@ -94,6 +78,23 @@
 
     <section class="slide">
       <h2>Backend</h2>
+
+      <div class="imageBlock" style="width: 40%">
+        <img src="pics/node.png"  />
+      </div>
+      
+      <h3>Node.js</h3>
+      <ul>
+        <li>server side js runtime</li>
+        <li>event driven</li>
+        <li>non-blocking io</li>
+        <li>google v8 engine (c++)</li>
+      </ul>
+    </section>    
+    
+    <section class="slide">
+      <h2>Backend</h2>
+      <h3>deployment chain</h3>
       <img src="draw/build.svg" width="80%" />
     </section>
 
@@ -250,22 +251,50 @@
       <h2>Modules</h2>
       <ul>
         <li>keep it small</li>
-        <li>do one thing</li>
+        <li>write the tests first</li>
         <li>inject dependencies</li>
       </ul>
       
-      <pre>
+      <pre class="brush: js">
+        var myModule = (function () {
+          var creationTimeStamp;
         
+          function getUnixTime() {
+            return new Date().getTime();
+          }
+        
+          creationTimeStamp = getUnixTime();
+        
+          return {
+            getCreationTimeStamp: function () {
+              return creationTimeStamp;
+            }
+          };
+        }());
       </pre>
     </section>
+
+    <section class="slide">
+      <h2>Measure</h2>
+      <div id="countdown" style="font-size: 4em; font-weight: bold;"></div>
+    </section>     
     
     <section class="slide">
       <h2>Measure</h2>
-      <ul>
-        <li>frontend errors</li>
-        <li>page speed</li>
-        <li>product success</li>
-      </ul>
+      <h3>backend & frontend errors</h3>
+      <img src="pics/kibana.png" />
+    </section>    
+    
+    <section class="slide">
+      <h2>Measure</h2>
+      <h3>page speed</h3>
+      <img src="pics/pageSpeed.png" />
+    </section>    
+    
+    <section class="slide">
+      <h2>Measure</h2>
+      <h3>success</h3>
+      <img src="pics/success.png" />
     </section>
 
     <section class="slide">
@@ -315,32 +344,55 @@
     <script src="jslibs/less.js"></script>
     <script src="core/deck.core.js"></script>
     <script src="extensions/ex.js"></script>
+    <script src="jslibs/angular.min.js"></script>
     <script>
-        SyntaxHighlighter.all();
+      
+      (function (ng) {
+        var module = ng.module('slidesApp', []);
+        module.controller('TopicController', ['$scope', function ($scope) {
+          $scope.slide = {
+            title: "SPA",
+            topic: "example: 2 way data binding"
+          };
+        }]);
+      }(angular));
 
-        $(function () {
-            var lastTopic = "";
+      SyntaxHighlighter.all();
 
-            $("pre").each(function () {
-                var $el = $(this),
-                        content = $el.html();
+      $(function () {
+        var lastTopic = "",
+            startTime = new Date().getTime();
 
-                content = content.replace(/>/g, "&gt;").replace(/</g, "&lt;");
-                $el.html(content);
-            });
+        $("pre").each(function () {
+          var $el = $(this),
+              content = $el.html();
 
-            $.deck('.slide');
-
-            $(".slide h2").slice(1).each(function () {
-                var newTopic = $(this).text();
-                if (lastTopic !== newTopic) {
-                    $("#overview").append("<li>" + newTopic + "</li>");
-                    lastTopic = newTopic;
-                }
-            });
-
-          
+          content = content.replace(/>/g, "&gt;").replace(/</g, "&lt;");
+          $el.html(content);
         });
+
+        $.deck('.slide');
+
+        $(".slide h2").slice(1).each(function () {
+          var newTopic = $(this).text();
+          if (lastTopic !== newTopic) {
+            $("#overview").append("<li>" + newTopic + "</li>");
+            lastTopic = newTopic;
+          }
+        });
+
+        function countUp() {
+          var countdown = $("#countdown");
+
+          setInterval(function () {
+            var seconds = (new Date().getTime() - startTime) / 1000;
+            var min = (seconds / 60);
+            countdown.html(Math.floor(min) + " min <br />" + seconds.toFixed(0) + " sec");
+          }, 1000);
+        }
+
+        countUp();
+      });
     </script>
 </body>
 </html>
